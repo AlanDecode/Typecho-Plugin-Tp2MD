@@ -6,7 +6,7 @@
  * 
  * @package Tp2MD
  * @author 熊猫小A
- * @version 1.0
+ * @version 1.1
  * @link https://www.imalan.cn
  */
 
@@ -137,10 +137,12 @@ class Tp2MD_Plugin implements Typecho_Plugin_Interface
                 'updated' => date('Y/m/d H:i:s', $row['modified']),
                 'status' => $row['status']
             );
+
             // 作者
             $author = $db->fetchRow($db->select()->from('table.users')
                 ->where('table.users.uid = ?', $row['authorId']));
             $front_matter['author'] = $author['screenName'];
+
             // 分类与标签
             $cates = array();
             $tags = array();
@@ -154,6 +156,13 @@ class Tp2MD_Plugin implements Typecho_Plugin_Interface
             }
             $front_matter['categories'] = $cates;
             $front_matter['tags'] = $tags;
+
+            // 自定义字段
+            $fields = $db->fetchAll($db->select()->from('table.fields')
+                ->where('table.fields.cid = ?',$row['cid']));
+            foreach ($fields as $field) {
+                $front_matter[$field['name']] = $field[$field['type'].'_value'];
+            }
 
             $output = "---".PHP_EOL;
             foreach ($front_matter as $key => $value) {
@@ -170,7 +179,7 @@ class Tp2MD_Plugin implements Typecho_Plugin_Interface
             $output .= str_replace('<!--markdown-->', '', $row['text']);
 
             $fileName = str_replace(array(' ','/','|'), '_', $row['title']);
-            $fileName = date('Y-m-d-').$fileName.'.md'; 
+            $fileName = date('Y-m-d-', $row['created']).$fileName.'.md';
             $filePath = '';
             if($row['type'] == 'page'){
                 $filePath = $pagePath;
