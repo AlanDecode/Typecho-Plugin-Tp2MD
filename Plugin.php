@@ -70,7 +70,7 @@ class Tp2MD_Plugin implements Typecho_Plugin_Interface
             array('true' => '是','false' => '否'),
             'true',
             '文章按分类保存至文件夹',
-            '是否按分类将文章保存至文件夹。若文章有多个分类，则每个分类都会保存一份。'
+            '是否按分类将文章保存至文件夹。'
         );
         $form->addInput($t);
 
