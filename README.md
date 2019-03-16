@@ -6,6 +6,10 @@
 
 支持将文章按分类导出到不同的文件夹。
 
+## 使用
+
+下载插件，解压后文件夹重命名为 Tp2MD，上传至插件目录并启用，然后按说明操作。
+
 ## Author
 
 [熊猫小A | AlanDecode](https://github.com/AlanDecode)
