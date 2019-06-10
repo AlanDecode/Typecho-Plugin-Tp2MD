@@ -130,7 +130,7 @@ class Tp2MD_Plugin implements Typecho_Plugin_Interface
             // 建立 yaml front matter
             $front_matter = array(
                 'layout' => $row['type'],
-                'cid' => $row[cid],
+                'cid' => $row['cid'],
                 'title' => $row['title'],
                 'slug' => $row['slug'],
                 'date' => date('Y/m/d H:i:s', $row['created']),
