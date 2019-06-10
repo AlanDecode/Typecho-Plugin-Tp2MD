@@ -87,7 +87,7 @@ class Tp2MD_Plugin implements Typecho_Plugin_Interface
     /**
      * 生成随机字符串作为 key
      */
-    private function generateRandomString($length = 10) { 
+    private static function generateRandomString($length = 10) { 
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
         $randomString = ''; 
         for ($i = 0; $i < $length; $i++) { 
